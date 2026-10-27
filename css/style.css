@@ -1,238 +1,547 @@
-*{
+
+/* =========================
+   GENERAL STYLES
+========================= */
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body{
-background-color: #000;
-font-family: Tahoma;
-color: #fff;
+html {
+    scroll-behavior: smooth;
 }
 
-.row{
-     display: flex;
+body {
+    background-color: #000;
+    font-family: Tahoma, sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+.row {
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-header{
-   
-    padding: 2rem 4rem;
+/* =========================
+   HEADER AND NAVIGATION
+========================= */
+
+header {
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 100;
+    border-bottom: 1px solid #333;
 }
 
-header .logo{
-    width: 25%;
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
 }
 
-.hub{
-    color: #00f;
+header .logo img {
+    width: 45px;
+    height: auto;
 }
 
-.musiclogo{
-    color:rgb(0, 255, 234);
-}
-
-header .logo img{
-    width: 50px;
-}
-
-
-header .logo span{
-    font-size: 2rem;
+header .logo span {
+    font-size: 1.8rem;
     font-weight: 600;
+    white-space: nowrap;
 }
 
-header .logo span:hover{
+.musiclogo {
+    color: rgb(0, 255, 234);
+}
+
+.hub {
     color: #00f;
-    transition: 1s ease-in-out;
 }
 
-header nav{
-    width: 50%;
+header .logo span:hover {
+    color: #00f;
+    transition: 0.3s ease-in-out;
 }
 
-header nav ul{
-    list-style-type: none;
+header nav {
+    flex: 1;
+    min-width: 0;
 }
 
-header nav ul li a{
+header nav ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: clamp(0.8rem, 2vw, 2rem);
+    list-style: none;
+}
+
+header nav ul li a {
     text-decoration: none;
     color: #eee;
-    font-size: 20px;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    transition: color 0.3s ease;
 }
 
-header nav ul li a:hover{
+header nav ul li a:hover {
     color: #00f;
-    transition: 0.1 ease-in;
 }
 
-.hero{
-    background: url("../images/hero_bg.png");
-    height: 100vh;
+button.menu {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+button.menu img {
+    width: 35px;
+    display: block;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+    min-height: 600px;
+    min-height: 80vh;
     border-top: 1px solid #555;
+    background-image: url("../images/hero_bg.png");
     background-repeat: no-repeat;
-    background-position-x: right;
+    background-position: right center;
     background-size: contain;
-    background-position-y: bottom;
+    display: flex;
+    align-items: center;
 }
 
-.hero .overlay{
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0);
-    margin-top: 5rem;
-    margin-left: 3.5rem;
-}
-
-.hero .overlay .hero_text{
-    width: 40%;
-}
-
-.hero .overlay .hero_text h1{
-    font-size: 4.5rem;
-    font-weight: 600;
-}
-
-.hero .overlay .hero_text p{
-    font-size: 1.7rem;
-    font-weight: 100;
-    margin: 0.6rem 0;
-    line-height: 2.4rem;
-    color: #ddd;
-}
-
-.hero .overlay .hero_text a{
-    color: #fff;
-    text-decoration: none;
-    padding: 5% 5%;
-    border-radius: 10px;
-    line-height: 7rem;
-    font-size: 1.5rem;
-     background: linear-gradient(45deg, #009df8, #0316bd);
-}
-
-.featured_songs{
+.hero .overlay {
+    width: 100%;
     padding: 3rem 4rem;
 }
 
-.featured_songs h1{
+.hero .overlay .hero_text {
+    width: 48%;
+    max-width: 650px;
+}
+
+.hero .overlay .hero_text h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.15;
+    overflow-wrap: break-word;
+}
+
+.hero .overlay .hero_text p {
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
+    font-weight: 100;
+    margin: 1rem 0 1.5rem;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+.hero .overlay .hero_text a {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.9rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    background: linear-gradient(45deg, #009df8, #0316bd);
+    transition: transform 0.3s ease;
+}
+
+.hero .overlay .hero_text a:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================
+   FEATURED SONGS AND ALBUMS
+========================= */
+
+.featured_songs {
+    padding: 3rem 4rem;
+}
+
+.featured_songs > h1,
+.popular_music > h1 {
     padding-bottom: 2rem;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 500;
 }
 
-.card_container .card{
-    width: 22%;
+.card_container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
 }
 
-.card_container .card .card_image{
+.card_container .card {
+    width: 100%;
+    min-width: 0;
     overflow: hidden;
 }
 
-.card_container .card .card_image img{
-    width: 100%;
-    height: 250px;
+.card_container .card .card_image {
+    overflow: hidden;
     border-radius: 15px;
+    aspect-ratio: 1 / 1;
+}
+
+.card_container .card .card_image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.4s ease-in-out;
+}
+
+.card_container .card .card_image img:hover {
+    transform: scale(1.08);
+}
+
+.card_container .card h1 {
+    color: rgb(212, 212, 48);
+    font-size: clamp(1rem, 1.5vw, 1.4rem);
+    padding-top: 0.8rem;
+    padding-bottom: 0.5rem;
+    overflow-wrap: anywhere;
+}
+
+.card_container .card p {
+    color: #ddd;
+    font-size: 0.95rem;
+}
+
+/* =========================
+   MOST POPULAR MUSIC
+========================= */
+
+.popular_music {
+    padding: 3rem 4rem;
+}
+
+.popular_music .music_wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+.popular_music .music {
+    width: 100%;
+    min-width: 0;
+}
+
+.popular_music .music ol {
+    width: 100%;
+    padding-left: 2rem;
+}
+
+.popular_music .music ol li {
+    width: 100%;
+    line-height: 1.6;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    padding: 0 0 1.2rem 0.3rem;
+    overflow-wrap: anywhere;
+}
+
+.popular_music .music_wrapper ol li span {
+    display: block;
+    float: right;
+    margin-left: 0.5rem;
+    font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+    font-weight: 100;
+    color: #ccc;
+}
+
+/* =========================
+   TABLETS AND SMALL LAPTOPS
+========================= */
+
+@media (max-width: 1024px) {
+    header {
+        padding: 1.3rem 2rem;
+        gap: 1.2rem;
     }
 
-    .card_container .card .card_image img:hover{
-        transform: scale(1.2);
-        transition: 1s ease-in-out;
-    }
-
-    .card_container .card h1{
-        color: rgb(212, 212, 48);
+    header .logo span {
         font-size: 1.5rem;
-        padding-top: .8rem;
-        padding-bottom: .8rem;
     }
 
-    .card_container .card p{
-        color: #ddd;
+    header .logo img {
+        width: 40px;
     }
 
-    .popular_music{
-         padding: 3rem 4rem;
+    header nav ul {
+        gap: 1rem;
     }
 
-    .popular_music h1{
-         padding-bottom: 2rem;
-         font-size: 2.5rem;
+    .hero .overlay {
+        padding: 3rem 2rem;
     }
 
-    .popular_music .music_wrapper{
+    .hero .overlay .hero_text {
+        width: 52%;
+    }
+
+    .featured_songs,
+    .popular_music {
+        padding: 3rem 2rem;
+    }
+
+    .card_container {
+        gap: 1rem;
+    }
+}
+
+/* =========================
+   MOBILE NAVIGATION
+========================= */
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 1.2rem;
+        gap: 0.8rem;
+    }
+
+    header .logo {
+        gap: 0.4rem;
+    }
+
+    header .logo img {
+        width: 35px;
+    }
+
+    header .logo span {
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+    }
+
+    button.menu {
+        display: block;
+    }
+
+    header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
+        padding: 1rem 1.5rem;
+        background-color: #101010;
+        border-bottom: 1px solid #333;
+    }
+
+    header nav.active {
+        display: block;
+    }
+
+    header nav ul {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
     }
 
-    .popular_music .music{
-        width: 45%;
-    }
-
-    .popular_music .music ol{
+    header nav ul li {
         width: 100%;
     }
 
-    .popular_music .music ol li{
+    header nav ul li a {
+        display: block;
+        padding: 0.85rem 0;
+        font-size: 1rem;
+    }
+
+    /* Hero */
+
+    .hero {
+        min-height: 520px;
+        min-height: 70svh;
+        background-size: auto 75%;
+        background-position: right bottom;
+    }
+
+    .hero .overlay {
+        padding: 3rem 1.5rem;
+        background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.75) 55%,
+            rgba(0, 0, 0, 0.1) 100%
+        );
+    }
+
+    .hero .overlay .hero_text {
+        width: 75%;
+    }
+
+    .hero .overlay .hero_text h1 {
+        font-size: clamp(2.2rem, 7vw, 3.5rem);
+    }
+
+    .hero .overlay .hero_text p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .hero .overlay .hero_text a {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+
+    /* Song and album cards */
+
+    .featured_songs,
+    .popular_music {
+        padding: 2.5rem 1.2rem;
+    }
+
+    .card_container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem 1rem;
+    }
+
+    .card_container .card h1 {
+        font-size: 1.1rem;
+    }
+
+    /* Popular music */
+
+    .popular_music .music_wrapper {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .popular_music .music ol li {
+        font-size: 1.05rem;
+    }
+
+    .popular_music .music_wrapper ol li span {
+        font-size: 0.9rem;
+    }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 480px) {
+    header {
+        padding: 0.9rem 1rem;
+    }
+
+    header .logo img {
+        width: 30px;
+    }
+
+    header .logo span {
+        font-size: 1.1rem;
+    }
+
+    button.menu img {
+        width: 30px;
+    }
+
+    .hero {
+        min-height: 480px;
+        min-height: 65svh;
+        background-size: auto 60%;
+        background-position: right bottom;
+    }
+
+    .hero .overlay {
+        padding: 2.5rem 1rem;
+    }
+
+    .hero .overlay .hero_text {
         width: 100%;
-        line-height: 2rem;
-        font-size: 1.5rem;
-        font-weight: 100;
+        max-width: 340px;
+    }
+
+    .hero .overlay .hero_text h1 {
+        font-size: clamp(2rem, 9vw, 2.7rem);
+    }
+
+    .hero .overlay .hero_text p {
+        font-size: 0.95rem;
+    }
+
+    .featured_songs,
+    .popular_music {
+        padding: 2rem 1rem;
+    }
+
+    .featured_songs > h1,
+    .popular_music > h1 {
+        font-size: 1.7rem;
+        padding-bottom: 1.3rem;
+    }
+
+    .card_container {
+        gap: 1.3rem 0.8rem;
+    }
+
+    .card_container .card .card_image {
+        border-radius: 10px;
+    }
+
+    .card_container .card .card_image img {
+        border-radius: 10px;
+    }
+
+    .card_container .card h1 {
+        font-size: 1rem;
+        padding-top: 0.6rem;
+    }
+
+    .card_container .card p {
+        font-size: 0.85rem;
+    }
+
+    .popular_music .music ol {
+        padding-left: 1.5rem;
+    }
+
+    .popular_music .music ol li {
+        font-size: 0.95rem;
         padding-bottom: 1rem;
     }
 
-    .popular_music .music_wrapper ol li span{
-        float: right;
-        font-size: 20px;
-        font-weight:100;
-        color: #ccc;
+    .popular_music .music_wrapper ol li span {
+        font-size: 0.8rem;
+    }
+}
+
+/* =========================
+   VERY NARROW PHONES
+========================= */
+
+@media (max-width: 350px) {
+    header .logo span {
+        font-size: 1rem;
     }
 
-    button.menu{
-        background: transparent !important;
-        border: none;
-        display: none;
-    }
-    
-     /* Mobile Devices */
-
-
-   /* Android Devices */
-
-    @media (max-width: 768px ) {
-        
-        header{
-            position: relative;
-        }
-
-        header nav{
-            position: absolute;
-            top: 100%;
-            background-color: #f40606;
-            padding: 1rem 2rem;
-            height: 40vh;
-            width: 100%;
-            left: 0;
-        }
-
-        header nav ul{
-            display: block !important;
-        }
-
-        header nav ul li{
-            line-height: 4rem;
-        }
-
-        button.menu{
-            display: block !important;
-        }
-
+    .card_container {
+        grid-template-columns: 1fr;
     }
 
-
-    /* Smaller Screen Devices */
-
-    @media (max-width: 480px) {
-       
+    .hero .overlay .hero_text {
+        width: 100%;
     }
+}
